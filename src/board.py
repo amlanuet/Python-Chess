@@ -166,3 +166,11 @@ class Board:
 
         # -- King --
         self.squares[row_other][4] = Square(row_other, 4, King(color))
+
+
+        # Adding more pieces for testing of the movement
+        self.squares[5][4] = Square(5, 4, Queen(color))
+        self.squares[4][4] = Square(4, 4, Rook(color))
+        self.squares[3][4] = Square(3, 4, Bishop(color))
+        self.squares[4][3] = Square(4, 2, Bishop('white'))
+        self.squares[4][2] = Square(4, 2, Knight('white'))
