@@ -81,6 +81,7 @@ class Main:
                             # show methods
                             game.show_bg(screen)
                             game.show_pieces(screen)
+                        else: print('invalid move')
                     dragger.undrag_piece()
 
                 # Quit Application
