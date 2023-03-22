@@ -23,6 +23,7 @@ class Main:
 
         while True:
             game.show_bg(screen)
+            game.show_last_move(screen)
             game.show_moves(screen)
             game.show_pieces(screen)
 
@@ -42,16 +43,17 @@ class Main:
                     # if clicked sqr has a piece
                     if board.squares[clicked_row][clicked_col].has_piece():
                         piece = board.squares[clicked_row][clicked_col].piece
+                        # Check valid piece color
+                        if piece.color == game.next_player:
+                            board.calc_moves(piece, clicked_row, clicked_col)
+                            # Save initial position so when an invalid move gets made the piece can return to the initial square 
+                            dragger.save_initial(event.pos)
+                            dragger.drag_piece(piece)
 
-                        board.calc_moves(piece, clicked_row, clicked_col)
-                        # Save initial position so when an invalid move gets made the piece can return to the initial square 
-                        dragger.save_initial(event.pos)
-                        dragger.drag_piece(piece)
-
-                        #show methods
-                        game.show_bg(screen)
-                        game.show_moves(screen)
-                        game.show_pieces(screen)
+                            #show methods
+                            game.show_bg(screen)
+                            game.show_moves(screen)
+                            game.show_pieces(screen)
 
                 # Mouse motion
                 elif event.type == pygame.MOUSEMOTION:
@@ -80,7 +82,9 @@ class Main:
                             board.move(dragger.piece, move)
                             # show methods
                             game.show_bg(screen)
+                            game.show_last_move(screen)
                             game.show_pieces(screen)
+                            game.next_turn()
                         else: print('invalid move')
                     dragger.undrag_piece()
 
