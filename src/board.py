@@ -109,7 +109,36 @@ class Board:
                     possible_move_col = possible_move_col + col_incr
 
         def king_moves():
-            pass
+            adjs = [
+                (row - 1, col + 0), # UP
+                (row - 1, col + 1), # UP RIGHT
+                (row + 0, col + 1), # RIGHT
+                (row + 1, col + 1), # DONW RIGHT
+                (row + 1, col + 0), # DOWN
+                (row + 1, col - 1), # DONW LEFT
+                (row + 0, col - 1), # LEFT
+                (row - 1, col - 1)  # UP LEFT
+            ]
+
+            # Normal king moves
+            for posible_move in adjs:
+                posible_move_row, posible_move_col = posible_move
+                if Square.in_range(posible_move_row, posible_move_col):
+                    if self.squares[posible_move_row][posible_move_col].isempty_or_enemy(piece.color):
+                        # create squares of the new move
+                        initial = Square(row, col)
+                        final = Square(posible_move_row, posible_move_col) # piece=piece still needs to be added
+                        # create a new move
+                        move = Move(initial, final)
+                        #append new valid move
+                        piece.add_move(move)
+
+            # Castling moves
+
+            #queen side
+
+            #king side
+
         if isinstance(piece, Pawn): pawn_moves()
         elif isinstance(piece, Knight): knight_moves()
         elif isinstance(piece, Bishop): straightline_moves([
@@ -134,7 +163,7 @@ class Board:
                 ( 1,  1), # DOWN RIGHT
                 ( 1, -1)  # DOWN LEFT
         ])
-        elif isinstance(piece, King): pass
+        elif isinstance(piece, King): king_moves()
 
     def _create(self):
         for row in range(ROWS):
