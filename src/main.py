@@ -64,6 +64,23 @@ class Main:
 
                 # Click release
                 elif event.type == pygame.MOUSEBUTTONUP:
+
+                    if dragger.dragging:
+                        dragger.update_mouse(event.pos)
+                        released_row = dragger.mouseY // SQSIZE
+                        released_col = dragger.mouseX // SQSIZE
+
+                        # check valid
+                        initial = Square(dragger.initial_row, dragger.initial_col)
+                        final = Square(released_row, released_col)
+                        move = Move(initial, final)
+                        
+                        if board.valid_move(dragger.piece, move):
+                            print('valid move')
+                            board.move(dragger.piece, move)
+                            # show methods
+                            game.show_bg(screen)
+                            game.show_pieces(screen)
                     dragger.undrag_piece()
 
                 # Quit Application
