@@ -7,11 +7,13 @@ class Board:
 
     def __init__(self):
         self.squares = [[0, 0, 0, 0, 0, 0, 0, 0] for col in range(COLS)]
+        print(self.squares)
         self.last_move = None
         self._create()
         self._add_piece('white')
         self._add_piece('black')
         
+
     def move(self, piece, move):
         initial = move.initial
         final = move.final
@@ -19,6 +21,10 @@ class Board:
         # Console Board move update
         self.squares[initial.row][initial.col].piece = None
         self.squares[final.row][final.col].piece = piece
+        print(self.squares[final.row][final.col].piece)
+        # for row in range(ROWS):
+        #     for col in range(COLS):
+        #         print(self.squares[row][col])
 
         # moe
         piece.moved = True
@@ -28,6 +34,9 @@ class Board:
 
         # set last move
         self.last_move = move
+        for row in range(ROWS):
+            for col in range(COLS):
+                print(row, col, self.squares[row][col].piece)
 
     def valid_move(self, piece, move):
         return move in piece.moves
@@ -190,6 +199,7 @@ class Board:
                 self.squares[row][col] = Square(row, col)
 
     def _add_piece(self, color):
+
         row_pawn, row_other = (6, 7) if color == 'white' else (1, 0)
 
         # -- Pawns --
