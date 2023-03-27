@@ -16,7 +16,7 @@ class Piece:
 
     def set_texture(self, size=80):
         self.texture = os.path.join(
-            f'assets/images/imgs-{size}px/{self.color}_{self.name}.png'
+            f'./Python-Chess/assets/images/imgs-{size}px/{self.color}_{self.name}.png'
         )
 
     def add_move(self, move):
@@ -49,4 +49,6 @@ class Queen(Piece):
 
 class King(Piece):
     def __init__(self, color):
+        self.left_rook = None
+        self.right_rook = None
         super().__init__('king', color, 100000.0)

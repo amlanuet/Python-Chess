@@ -48,7 +48,7 @@ class Main:
                         piece = board.squares[clicked_row][clicked_col].piece
                         # Check valid piece color
                         if piece.color == game.next_player:
-                            board.calc_moves(piece, clicked_row, clicked_col)
+                            board.calc_moves(piece, clicked_row, clicked_col, bool=True)
                             # Save initial position so when an invalid move gets made the piece can return to the initial square 
                             dragger.save_initial(event.pos)
                             dragger.drag_piece(piece)
