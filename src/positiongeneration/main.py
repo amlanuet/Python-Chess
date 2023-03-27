@@ -83,18 +83,14 @@ class Main:
                         released_row = dragger.mouseY // SQSIZE
                         released_col = dragger.mouseX // SQSIZE
 
-                        # create posibble move
+                        # check valid
                         initial = Square(dragger.initial_row, dragger.initial_col)
                         final = Square(released_row, released_col)
                         move = Move(initial, final)
                         
-                        # check valid
                         if board.valid_move(dragger.piece, move):
-                            # print('valid move')
-                            captured = board.squares[released_row][released_col].has_piece()
+                            print('valid move')
                             board.move(dragger.piece, move)
-                            # play sound 
-                            game.play_sound(captured)
                             # show methods
                             game.show_bg(screen)
                             game.show_last_move(screen)
@@ -103,12 +99,6 @@ class Main:
                         else: print('invalid move')
                     dragger.undrag_piece()
 
-                # key presss
-                elif event.type == pygame.KEYDOWN:
-
-                    #changing themes
-                    if event.key == pygame.K_t:
-                        game.change_theme()
                 # Quit Application
                 if event.type == pygame.QUIT:
                     pygame.quit()
