@@ -103,12 +103,21 @@ class Main:
                         else: print('invalid move')
                     dragger.undrag_piece()
 
-                # key presss
+                # key press events
                 elif event.type == pygame.KEYDOWN:
-
+                    # T down
                     #changing themes
                     if event.key == pygame.K_t:
-                        game.change_theme()
+                        game.change_theme()\
+                    # R donw
+                    #rest
+                    if event.key == pygame.K_r:
+                        game.reset()
+                        game = self.game
+                        board = self.game.board
+                        dragger = self.game.dragger
+
+                
                 # Quit Application
                 if event.type == pygame.QUIT:
                     pygame.quit()
