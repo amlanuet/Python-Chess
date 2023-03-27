@@ -91,7 +91,10 @@ class Main:
                         # check valid
                         if board.valid_move(dragger.piece, move):
                             # print('valid move')
+                            #normal capture (NOT en_passant)
                             captured = board.squares[released_row][released_col].has_piece()
+                            board.set_false_en_passant()
+
                             board.move(dragger.piece, move)
                             # play sound 
                             game.play_sound(captured)
