@@ -1,6 +1,7 @@
 import random
+import board
 
-board = [[" " for x in range(8)] for y in range(8)]
+gen_board = [[" " for row in range(8)] for col in range(8)]
 piece_list = ["Rook", "Knight", "Bishop", "Queen", "Pawn"]
 
 
@@ -53,13 +54,15 @@ def pawn_on_promotion_square(pc, pr):
 	return False
 
 
-def start():
-	piece_amount_white, piece_amount_black = random.randint(0, 10), random.randint(0, 10)
-	place_kings(board)
-	populate_board(board, piece_amount_white, piece_amount_black)
-	# print(fen_from_board(board))
-	for x in board:
-		print(x)
-	
-#entry point
-start()
+# def start():
+# 	piece_amount_white, piece_amount_black = random.randint(0, 10), random.randint(0, 10)
+# 	place_kings(gen_board)
+# 	populate_board(gen_board, piece_amount_white, piece_amount_black)
+# 	# print(fen_from_board(board))
+# 	for x in gen_board:
+# 		for y in range(7):
+# 			if x[y] == 'King':
+# 				board._add_piece(gen_board, 'white', 'King', x, y)
+# 				print(x[y])
+# 			elif x[y] == 'king':
+# 				board._add_piece(gen_board, 'black', 'King', x, y)

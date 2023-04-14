@@ -1,20 +1,25 @@
 from const import *
-from square import Square
+from square import *
 from piece import *
 from move import Move
 from sound import Sound
+from position_gen import *
 import copy
 import os
+import random
 
+piece_list = ["Rook", "Knight", "Bishop", "Queen", "Pawn"]
 class Board:
 
     def __init__(self):
         self.squares = [[0, 0, 0, 0, 0, 0, 0, 0] for col in range(COLS)]
-        print(self.squares)
+        piece_amount_white, piece_amount_black = random.randint(0, 10), random.randint(0, 10)
+        # print(self.squares)
         self.last_move = None
         self._create()
-        self._add_piece('white')
-        self._add_piece('black')
+        Board.populate_puzzle(self, piece_amount_white, piece_amount_black)
+        # self._add_piece('white')
+        # self._add_piece('black')
         
 
     def move(self, piece, move, testing=False):
@@ -61,9 +66,9 @@ class Board:
 
         # set last move
         self.last_move = move
-        for row in range(ROWS):
-            for col in range(COLS):
-                print(row, col, self.squares[row][col].piece)
+        # for row in range(ROWS):
+        #     for col in range(COLS):
+        #         print(row, col, self.squares[row][col].piece)
 
     def valid_move(self, piece, move):
         return move in piece.moves
@@ -443,3 +448,19 @@ class Board:
         # self.squares[3][4] = Square(3, 4, Bishop(color))
         # self.squares[4][3] = Square(4, 2, Bishop('white'))
         # self.squares[4][2] = Square(4, 2, Knight('white'))
+        
+    def populate_puzzle(self, wp, bp):
+        piece_amount_white, piece_amount_black = wp, bp
+        place_kings(gen_board)
+        populate_board(gen_board, piece_amount_white, piece_amount_black)
+        print(gen_board)
+        gen_row = -1
+        for i in gen_board:
+            gen_row += 1
+            for gen_col in range(8):
+                gen_piece = i[gen_col]
+                function_piece = gen_piece[0].title() + gen_piece[1:]
+                # print(gen_row, gen_col, gen_piece)
+                if not function_piece == ' ':
+                    gen_color = 'white' if gen_piece[0].isupper() else 'black'
+                    self.squares[gen_row][gen_col] = Square(gen_row, gen_col, eval(function_piece)(gen_color))

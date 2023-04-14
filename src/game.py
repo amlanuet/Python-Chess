@@ -3,7 +3,7 @@ from const import *
 from board import Board
 from dragger import *
 from config import Config
-from theme import Theme
+from theme import Theme               
 from square import Square
 
 class Game:

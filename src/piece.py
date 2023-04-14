@@ -16,7 +16,7 @@ class Piece:
 
     def set_texture(self, size=80):
         self.texture = os.path.join(
-            f'./Python-Chess/assets/images/imgs-{size}px/{self.color}_{self.name}.png'
+            f'../Python-Chess/assets/images/imgs-{size}px/{self.color}_{self.name}.png'
         )
 
     def add_move(self, move):

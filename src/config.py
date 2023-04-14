@@ -12,8 +12,8 @@ class Config:
         self.idx = 0
         self.theme = self.themes[self.idx]
         self.font = pygame.font.SysFont('monospace', 18, bold=True)
-        self.move_sound = Sound(os.path.join('./Python-Chess/assets/sounds/move.wav'))
-        self.capture_sound = Sound(os.path.join('./Python-Chess/assets/sounds/capture.wav'))
+        self.move_sound = Sound(os.path.join('../Python-Chess/assets/sounds/move.wav'))
+        self.capture_sound = Sound(os.path.join('../Python-Chess/assets/sounds/capture.wav'))
 
 
     def change_theme(self):
