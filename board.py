@@ -53,30 +53,30 @@ class Board:
     def get_piece_from_fen_char(self, char):
         if char.isupper():
             if char == 'P':
-                return Pieces(PieceType.PAWN, Color.WHITE)
+                return Pawn(Color.WHITE)
             elif char == 'R':
-                return Pieces(PieceType.ROOK, Color.WHITE)
+                return Rook(Color.WHITE)
             elif char == 'N':
-                return Pieces(PieceType.KNIGHT, Color.WHITE)
+                return Knight(Color.WHITE)
             elif char == 'B':
-                return Pieces(PieceType.BISHOP, Color.WHITE)
+                return Bishop(Color.WHITE)
             elif char == 'Q':
-                return Pieces(PieceType.QUEEN, Color.WHITE)
+                return Queen(Color.WHITE)
             elif char == 'K':
-                return Pieces(PieceType.KING, Color.WHITE)
+                return King(Color.WHITE)
         else:
             if char == 'p':
-                return Pieces(PieceType.PAWN, Color.BLACK)
+                return Pawn(Color.BLACK)
             elif char == 'r':
-                return Pieces(PieceType.ROOK, Color.BLACK)
+                return Rook(Color.BLACK)
             elif char == 'n':
-                return Pieces(PieceType.KNIGHT, Color.BLACK)
+                return Knight(Color.BLACK)
             elif char == 'b':
-                return Pieces(PieceType.BISHOP, Color.BLACK)
+                return Bishop(Color.BLACK)
             elif char == 'q':
-                return Pieces(PieceType.QUEEN, Color.BLACK)
+                return Queen(Color.BLACK)
             elif char == 'k':
-                return Pieces(PieceType.KING, Color.BLACK)
+                return King(Color.BLACK)
 
 
     def move(self, piece, move, testing=False):
